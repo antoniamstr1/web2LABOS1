@@ -59,7 +59,7 @@ const getNatjecatelji = (req,res) => {
 
     const naziv = req.params.naziv;
 
-    pool.query('select * from bodovi where natjecanje = $1 ', [naziv] ,(error,results) => {
+    pool.query('select * from bodovi where natjecanje = $1 order by bodovi desc', [naziv] ,(error,results) => {
         if(error) {
             throw error
         }
