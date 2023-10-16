@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from './NavBar'
+import NavBar from './NavBar';
 
 function PopisNatjecanja() {
     const [data, setData] = useState([]);
     const [contestants, setContestants] = useState([]);
     const [selectedCompetition, setSelectedCompetition] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [successMessage, setSuccessMessage] = useState(null);
 
     useEffect(() => {
-        // Fetch data from the API when the component mounts
         fetch('http://localhost:5000/natjecanja')
             .then((response) => response.json())
             .then((data) => {
-                console.log(data); // Log the data to the console
+                console.log(data);
                 setData(data);
             })
             .catch((error) => console.error('Error fetching data:', error));
     }, []);
-    // Function to fetch contestants for a specific competition
+
     const fetchContestants = (naziv) => {
         fetch(`http://localhost:5000/natjecatelji/${naziv}`)
             .then((response) => response.json())
@@ -24,38 +25,80 @@ function PopisNatjecanja() {
             .catch((error) => console.error('Error fetching contestants data:', error));
     };
 
-    // Handle button click to fetch contestants data
     const handleShowContestants = (naziv) => {
         setSelectedCompetition(naziv);
         fetchContestants(naziv);
     };
+
+    const filteredData = data.filter((competition) =>
+        competition.naziv.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
-        <div>
+        <div className = "flex-container">
+            <div className="competition-container">
+                <h1>Popis natjecanja</h1>
+                <div className="list-container" >
 
-            <h1>List of Competitions</h1>
+                    <input
+                        type="text"
+                        placeholder="Search competitions..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <ul className="competition-list scrollable-container">
+                        {filteredData.map((competition) => (
+                            <li key={competition.naziv}>
+                                <button className="button-list"  onClick={() => handleShowContestants(competition.naziv)}>
+                                    {competition.naziv}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-            <ul>
-                {data.map((competition) => (
-                    <li key={competition.naziv}>
-                        {competition.naziv}
-                        <button onClick={() => handleShowContestants(competition.naziv)}>
-                            Show Contestants
-                        </button>
-                        {selectedCompetition === competition.naziv && (
-                            <ul>
-                                {contestants.map((contestant) => (
-                                    <li key={contestant.natejcatelj + contestant.bodovi}>
-                                        {contestant.natjecatelj} - Bodovi: {contestant.bodovi}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </li>
-                ))}
-            </ul>
+            </div>
+            <div>
+            <h1>Trenutni poredak natjecatelja</h1>
+            <div className="flex-container-vertical">
+
+            <div className="flex-container-horizontal">
+
+                <div >
+                {selectedCompetition && (
+                    <div className="contestants-container">
+
+                        <div className="contestants-list">
+                            <div>NATJECATELJI</div>
+                            {contestants.map((contestant, index) => (
+                                <div className="contestant-element" key={contestant.natjecatelj}>
+                                    {index + 1}. {contestant.natjecatelj}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+                <div>
+                {selectedCompetition && (
+                    <div className="contestants-container">
+
+                        <div className="contestants-list">
+                            <div>BODOVI</div>
+                            {contestants.map((contestant) => (
+                                <div className="contestant-element" key={contestant.natjecatelj + contestant.bodovi}>
+                                    {contestant.bodovi}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                </div>
+            </div>
+            </div>
+        </div>
         </div>
     );
 }
-
 
 export default PopisNatjecanja;

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import PutBodovi from "./PutBodovi";
 
-function ContestDetail({ match }) {
+function ContestDetail({match}) {
     const [contest, setContest] = useState({});
     const [contestants, setContestants] = useState([]);
     const [kola, setKola] = useState([]);
@@ -25,27 +26,69 @@ function ContestDetail({ match }) {
 
     return (
         <div>
-            <h1>Contest: {contest.naziv}</h1>
-            <h2>Contestants:</h2>
-            <ul>
-                {contestants.map((contestant) => (
-                    <li key={contestant.natejcatelj + contestant.bodovi}>
-                        {contestant.natjecatelj} - Bodovi: {contestant.bodovi}
-                    </li>
-                ))}
-            </ul>
-            <h2>Kola:</h2>
-            <ul>
-                {kola.map((kolo) => (
-                    <li key={kolo.natjecatelj1 + kolo.natjecatelj2 + kolo.natjecatelj1_ishod + kolo.natjecatelj2_ishod}>
-                        {kolo.natjecatelj1} : {kolo.natjecatelj2} ->{' '}
-                        {kolo.natjecatelj1_ishod !== null ? kolo.natjecatelj1_ishod : '-'} :{' '}
-                        {kolo.natjecatelj2_ishod !== null ? kolo.natjecatelj2_ishod : '-'}
+            <div className="title"><h1> {match.params.naziv}</h1></div>
+        <div className="flex-container-horizontal">
 
-                    </li>
-                    // You can display more details about each kolo here
-                ))}
-            </ul>
+            <div >
+            <h3>Trenutni poredak natjecatelja:</h3>
+            <div className="flex-container-horizontal">
+
+                <div className="contestants-container">
+
+                    <div className="contestants-list">
+                        <div>NATJECATELJI</div>
+                        {contestants.map((contestant, index) => (
+                            <div className="contestant-element" key={contestant.natjecatelj}>
+                                {index + 1}. {contestant.natjecatelj}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="contestants-container">
+
+                    <div className="contestants-list">
+                        <div>BODOVI</div>
+                        {contestants.map((contestant) => (
+                            <div className="contestant-element" key={contestant.bodovi}>
+                                {contestant.bodovi}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div>
+                    <h3>Raspored kola</h3>
+
+                    <div className="contestants-container">
+                        {kola.map((kolo, index) => (
+                            <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
+                                <div className="flex-container-vertical">
+                                    <div>{index + 1}. kolo:</div>
+                                    <div className="flex-container-horizontal div-smaller color2">
+
+                                        <div className="kolo-imena">{kolo.natjecatelj1}</div>
+                                        <div className="kolo-imena">:</div>
+                                        <div className="kolo-imena">{kolo.natjecatelj2}</div>
+                                    </div>
+                                    <div>
+                                        {kolo.natjecatelj1_ishod === null ? (
+                                            <PutBodovi kolo_id={kolo.kolo_id}/>
+                                        ) : (
+                                            <div className="flex-container-horizontal div-smaller color1">
+                                                <div>{kolo.natjecatelj1_ishod}</div>
+                                                <div> :</div>
+                                                <div>{kolo.natjecatelj2_ishod}</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+            </div>
         </div>
     );
 }

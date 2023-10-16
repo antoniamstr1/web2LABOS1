@@ -287,7 +287,7 @@ const insertBodoviDataForContestant = (ime, natjecanje) => {
                 [parseInt(req.body.natjecatelj1_ishod), parseInt(req.body.natjecatelj2_ishod), kolo_id, naziv]
             );
 
-            res.status(200).json(updateResult.rows);
+            res.status(201).json({ message: 'Results added successfully', ishod1: req.body.natjecatelj1_ishod, ishod2: req.body.natjecatelj2_ishod});
         } catch (error) {
             console.error('Error:', error);
             res.status(500).json({ error: 'Internal Server Error' });

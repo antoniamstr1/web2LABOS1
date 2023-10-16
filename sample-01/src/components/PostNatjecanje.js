@@ -93,9 +93,7 @@ function PostNatjecanja() {
                     const competitionURL = `http://localhost:3000/natjecanje/${response.data.naziv}`;
                     setSuccessMessage(
                         <div>
-                            Competition created successfully! You can view it <a href={competitionURL}>here</a>.
-                            <p>{competitionURL}</p>
-
+                            Natjecanje podijeli sa drugima: <a href={competitionURL}>{competitionURL}</a>.
                         </div>
                     );
                 }
@@ -109,6 +107,7 @@ function PostNatjecanja() {
                 }
             });
     };
+
 
     return (
         <div>
@@ -128,9 +127,9 @@ function PostNatjecanja() {
                         onChange={handleChange}
                     />
                 </div>
-
-                <div>
-                    <label htmlFor="bodovi_pobjeda">Bodovi za pobjedu:</label>
+                <div className="flex-container-horizontal">
+                <div >
+                    <label className="label-padding" htmlFor="bodovi_pobjeda">Bodovi za pobjedu:</label>
                     <input
                         type="number"
                         id="bodovi_pobjeda"
@@ -140,7 +139,7 @@ function PostNatjecanja() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="bodovi_remi">Bodovi za remi:</label>
+                    <label className="label-padding" htmlFor="bodovi_remi">Bodovi za remi:</label>
                     <input
                         type="number"
                         id="bodovi_remi"
@@ -150,7 +149,7 @@ function PostNatjecanja() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="bodovi_poraz">Bodovi za poraz:</label>
+                    <label className="label-padding" htmlFor="bodovi_poraz">Bodovi za poraz:</label>
                     <input
                         type="number"
                         id="bodovi_poraz"
@@ -159,17 +158,18 @@ function PostNatjecanja() {
                         onChange={handleChange}
                     />
                 </div>
+                </div>
                 <div>
                     <label htmlFor="popis_natjecatelja">Popis natjecatelja:</label>
-                    <input
-                        type="text"
+                    <textarea
+
                         id="popis_natjecatelja"
                         name="popis_natjecatelja"
                         value={formData.popis_natjecatelja}
                         onChange={handleChange}
                     />
                 </div>
-                        <button type="submit">Submit</button>
+                        <button className="btn btn-primary " type="submit">Submit</button>
                     </form>
                     {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
                     {successMessage && <div>{successMessage}</div>}

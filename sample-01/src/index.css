@@ -12,3 +12,118 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Scrollable container */
+.scrollable-container {
+  max-height: 200px; /* Set your desired max height */
+  max-width: 300px;
+  overflow: auto;
+  border: 1px solid #ccc; /* Add a border if desired */
+}
+
+/* Competition list styling */
+.competition-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.competition-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc; /* Add a separator between list items */
+}
+.contestants-list{
+  margin: 50px;
+}
+.contestant-element{
+  margin: 20px;
+}
+/* Style for the search input (optional) */
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="number"] {
+  width: 45px;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: space-evenly;
+ }
+
+.flex-container-horizontal{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.flex-container-vertical{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.kolo-imena{
+  margin: 7px;
+}
+
+.button-list{
+  background-color: white;
+  border: none;
+  display: block;
+  width: 100%;
+
+
+}
+
+.label-padding{
+  padding-right: 15px;
+}
+
+.div-smaller{
+  height: 40px;
+}
+
+.color1{
+  background-color: #e6f0ef;
+
+}
+
+.color2{
+  background-color: #eff2f1;
+}
+
+.title{
+  padding: 15px;
+
+  margin: 20px;
+}
+
+.dvotocka{
+  margin-top: 12px;
+}
+.smaller-button{
+  height: 40px;
+  margin-top: 8px;
+}
+
+.added-margin{
+  margin-top: 50px;
+}
