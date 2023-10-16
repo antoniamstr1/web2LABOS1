@@ -35,10 +35,11 @@ function PutBodovi({ kolo_id }) {
 
     return (
         <div>
-            <h2>Update Competition</h2>
+
             <form onSubmit={handleSubmit}>
+                <div className="flex-container-horizontal">
                 <div>
-                    <label htmlFor="natjecatelj1_ishod">natjecatelj1_ishod:</label>
+                    <label htmlFor="natjecatelj1_ishod"></label>
                     <input
                         type="number"
                         id="natjecatelj1_ishod"
@@ -48,7 +49,7 @@ function PutBodovi({ kolo_id }) {
                     />
                 </div>
                 <div>
-                    <label htmlFor="natjecatelj2_ishod">natjecatelj2_ishod:</label>
+                    <label htmlFor="natjecatelj2_ishod"></label>
                     <input
                         type="number"
                         id="natjecatelj2_ishod"
@@ -58,7 +59,9 @@ function PutBodovi({ kolo_id }) {
                     />
                 </div>
 
+
                 <button type="submit">Submit</button>
+                </div>
             </form>
         </div>
     );

@@ -12,3 +12,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Scrollable container */
+.scrollable-container {
+  max-height: 200px; /* Set your desired max height */
+  max-width: 200px;
+  overflow: auto;
+  border: 1px solid #ccc; /* Add a border if desired */
+}
+
+/* Competition list styling */
+.competition-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.competition-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc; /* Add a separator between list items */
+}
+
+/* Style for the search input (optional) */
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="number"] {
+  width: 20%;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.flex-container{
+  display: flex;
+  justify-content: space-evenly;
+ }
+
+.flex-container-horizontal{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.flex-container-vertical{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.kolo-imena{
+  margin: 23px;
+}
+

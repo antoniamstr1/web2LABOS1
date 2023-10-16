@@ -25,8 +25,8 @@ function ContestDetail({ match }) {
 
     return (
         <div>
-            <h1>Contest: {contest.naziv}</h1>
-            <h2>Contestants:</h2>
+            <h1> {match.params.naziv}</h1>
+            <h2>Trenutni poredak natjecatelja:</h2>
             <ul>
                 {contestants.map((contestant) => (
                     <li key={contestant.natejcatelj + contestant.bodovi}>
@@ -43,7 +43,7 @@ function ContestDetail({ match }) {
                         {kolo.natjecatelj2_ishod !== null ? kolo.natjecatelj2_ishod : '-'}
 
                     </li>
-                    // You can display more details about each kolo here
+
                 ))}
             </ul>
         </div>
