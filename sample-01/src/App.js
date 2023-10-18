@@ -42,7 +42,7 @@ const App = () => {
             <Route path="/" exact component={PopisNatjecanja} />
             <Route path="/kreirajNatjecanje" component={PostNatjecanje} />
             <Route path="/urediNatjecanje" component={NatjecanjaKorisnik} />
-            <Route path="/natjecanje/:naziv" component={IzabranoNatjecanje} />
+            <Route path="/natjecanje/:naziv" exact  component={IzabranoNatjecanje} />
           </Switch>
         </Container>
         <Footer />

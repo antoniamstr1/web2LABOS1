@@ -25,6 +25,7 @@ function ContestDetail({match}) {
     }, [match.params.naziv]);
 
     return (
+
         <div>
             <div className="title"><h1> {match.params.naziv}</h1></div>
         <div className="flex-container-horizontal">
@@ -39,7 +40,7 @@ function ContestDetail({match}) {
                         <div>NATJECATELJI</div>
                         {contestants.map((contestant, index) => (
                             <div className="contestant-element" key={contestant.natjecatelj}>
-                                {index + 1}. {contestant.natjecatelj}
+                                {index + 1}.  {contestant.natjecatelj}
                             </div>
                         ))}
                     </div>
