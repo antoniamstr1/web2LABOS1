@@ -14,6 +14,7 @@ RUN npm install -g --force npm@latest typescript@latest yarn@latest
 
 RUN yarn install
 
+
 COPY . .
 
 RUN yarn build
@@ -32,7 +33,7 @@ WORKDIR /app
 
 COPY --from=build /app/package.json .
 
-RUN yarn install --production
+RUN "yarn config set strict-ssl false -g && yarn install --production"
 
 COPY --from=build /app/build ./build
 COPY --from=build /app/src/auth_config.json ./src/auth_config.json
