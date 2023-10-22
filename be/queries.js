@@ -44,8 +44,9 @@ const getNatjecanje = (req, res) => {
  * vraća sva natjecanja povezana s određenim korisnikom
  */
 const getNatjecanjaByKorisnik = (req,res) => {
-    const sub = parseInt(req.params.sub);
-
+    const sub = req.params.sub;
+    console.log('current user:',req.oidc.isAuthenticated());
+    //console.log('sub:', sub.toString());
     pool.query('select * from natjecanje where korisnik_sub = $1 ',[sub], (error,results) => {
         if(error) {
             throw error;
@@ -111,7 +112,7 @@ const getKolaByNatjecanje = (req,res) => {
  */
 const createNatjecanje = (req, res) => {
     const { naziv, bodovi_pobjeda, bodovi_remi, bodovi_poraz } = req.body;
-    const sub = parseInt(req.params.sub);
+    const sub = req.params.sub;
     let lista_natjecatelja = [];
 
 

@@ -21,8 +21,8 @@ function PopisNatjecanja() {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                console.log('user:'+user.name)
-                console.log('user:'+user.sub)
+                console.log('user:'+user)
+
                 setData(data);
             })
             .catch((error) => console.error('Error fetching natjecana data:', error))

@@ -19,6 +19,7 @@ const config = {
     issuerBaseURL: process.env.ISSUER,
 
 };
+
 var app = express();
 app.use(cors(corsOptions));
 app.set('views', 'views');
@@ -28,7 +29,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(auth(config));
 
-//auth
+
 
 
 app.use('/', indexRouter);
