@@ -5,7 +5,7 @@ function PopisNatjecanja() {
     const {user, isAuthenticated, loginWithRedirect} = useAuth0();
     const [data, setData] = useState([]);
     const [kola, setKola] = useState([]);
-    const [selectedCompetition, setSelectedCompetition] = useState(null);
+    const [izabranoNatjecanje, setIzabranoNatjecanje] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -17,19 +17,21 @@ function PopisNatjecanja() {
             console.log('This is a page refresh');
         }
 
-        fetch(`http://localhost:5000/natjecanjaByKorisnik/${user?.sub || ''}`)
+        fetch(`http://localhost:5000/natjecanjaByKorisnik/${user?.sub}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
+                console.log('user:'+user.name)
+                console.log('user:'+user.sub)
                 setData(data);
             })
-            .catch((error) => console.error('Error fetching data:', error))
+            .catch((error) => console.error('Error fetching natjecana data:', error))
             .finally(() => {
                 setLoading(false); // Set loading to false when the data is fetched
             });
     }, [user]);
 
-    // Function to fetch contestants for a specific competition
+
     const fetchKola = (naziv) => {
         fetch(`http://localhost:5000/kola/${naziv}`)
             .then((response) => response.json())
@@ -37,15 +39,15 @@ function PopisNatjecanja() {
             .catch((error) => console.error('Error fetching kola data:', error));
     };
 
-    // Handle button click to fetch contestants data
+
     const handleShowKola = (naziv) => {
-        setSelectedCompetition(naziv);
+        setIzabranoNatjecanje(naziv);
         fetchKola(naziv);
     };
 
-    // Filter competitions based on the search term
-    const filteredData = data.filter((competition) =>
-        competition.naziv.toLowerCase().includes(searchTerm.toLowerCase())
+
+    const filteredData = data.filter((natj) =>
+        natj.naziv.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -62,10 +64,10 @@ function PopisNatjecanja() {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                             <ul className="competition-list scrollable-container">
-                                {filteredData.map((competition) => (
-                                    <li key={competition.naziv}>
-                                        <button className="button-list" onClick={() => handleShowKola(competition.naziv)}>
-                                            {competition.naziv}
+                                {filteredData.map((natj) => (
+                                    <li key={natj.naziv}>
+                                        <button className="button-list" onClick={() => handleShowKola(natj.naziv)}>
+                                            {natj.naziv}
                                         </button>
                                     </li>
                                 ))}
@@ -74,7 +76,7 @@ function PopisNatjecanja() {
                     </div>
                     <div>
                         <h1>Raspored kola</h1>
-                        {selectedCompetition && (
+                        {izabranoNatjecanje && (
                             <div className="contestants-container">
                                 {kola.map((kolo, index) => (
                                     <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>

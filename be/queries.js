@@ -1,13 +1,16 @@
 /**
  * TU SE NALAZE SVI UPITI IZ BAZE
  */
+const { DB_USER, DB_HOST, DB_PASSWORD } = process.env;
+require('dotenv').config();
 const Pool = require('pg').Pool;
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "web2lab1",
-    password: "postgres",
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: 'natjecanja_m9z9',
+    password: process.env.DB_PASSWORD,
     port: 5432,
+    ssl: true
 })
 
 /**
@@ -111,7 +114,7 @@ const createNatjecanje = (req, res) => {
     const sub = parseInt(req.params.sub);
     let lista_natjecatelja = [];
 
-    // Function to insert a contestant into the database
+
     const insertContestant = (ime) => {
         return new Promise((resolve, reject) => {
             pool.query('insert into natjecatelj (ime) values ($1)', [ime], (error, results) => {
@@ -123,8 +126,6 @@ const createNatjecanje = (req, res) => {
             });
         });
     };
-
-    // Function to check if a contestant exists in the database
     const checkContestantExists = (ime) => {
         return new Promise((resolve, reject) => {
             pool.query('SELECT * FROM natjecatelj WHERE ime = $1', [ime], (error, results) => {
@@ -137,16 +138,15 @@ const createNatjecanje = (req, res) => {
         });
     };
 
-    // Function to insert contestants into the database
     const insertContestants = async () => {
         for (const ime of lista_natjecatelja) {
 
-            const trimmedName = ime.trim(); // Trim the contestant's name
+            const trimmedName = ime.trim();
 
             const exists = await checkContestantExists(trimmedName);
             if (!exists) {
                 await insertContestant(trimmedName);
-                // You can also insert into the 'bodovi' table here if needed
+
             }
         }
     };
@@ -163,7 +163,7 @@ const createNatjecanje = (req, res) => {
             {
                 const natjecanje_id = results.rows[0].natjecanje_id;
 
-                // Clean up input contestants
+
                 const {popis_natjecatelja} = req.body;
 
                 if (popis_natjecatelja.includes('\n')) {
@@ -173,10 +173,10 @@ const createNatjecanje = (req, res) => {
                 }
 
 
-                // Insert contestants
+
                 await insertContestants();
 
-                // Insert pairs into the 'kolo' table
+
                 for (let i = 0; i < lista_natjecatelja.length; i++) {
                     for (let j = i + 1; j < lista_natjecatelja.length; j++) {
                         const trimmedName1 = lista_natjecatelja[i].trim();
@@ -192,7 +192,7 @@ const createNatjecanje = (req, res) => {
     );
 };
 
-// Function to insert a pair into the 'kolo' table
+
 const insertKoloPair = (natjecatelj1, natjecatelj2, natjecanje_id, naziv) => {
     return new Promise((resolve, reject) => {
         pool.query(
@@ -208,7 +208,7 @@ const insertKoloPair = (natjecatelj1, natjecatelj2, natjecanje_id, naziv) => {
         );
     });
 };
-// Function to insert data into the 'bodovi' table for all contestants
+
 const insertBodoviData = async (natjecatelja, natjecanje) => {
     for (const ime of natjecatelja) {
         const trimmedName = ime.trim();
@@ -216,7 +216,7 @@ const insertBodoviData = async (natjecatelja, natjecanje) => {
     }
 };
 
-// Function to insert data into the 'bodovi' table for a single contestant
+
 const insertBodoviDataForContestant = (ime, natjecanje) => {
     return new Promise((resolve, reject) => {
         pool.query(
@@ -288,6 +288,7 @@ const insertBodoviDataForContestant = (ime, natjecanje) => {
             );
 
             res.status(201).json({ message: 'Results added successfully', ishod1: req.body.natjecatelj1_ishod, ishod2: req.body.natjecatelj2_ishod});
+
         } catch (error) {
             console.error('Error:', error);
             res.status(500).json({ error: 'Internal Server Error' });

@@ -2,23 +2,23 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import PutBodovi from "./PutBodovi";
 
-function ContestDetail({match}) {
-    const [contest, setContest] = useState({});
-    const [contestants, setContestants] = useState([]);
+function IzabranoNatjecanje({match}) {
+    const [contest, setNatjecanje] = useState({});
+    const [natjecatelji, setNatjecatelji] = useState([]);
     const [kola, setKola] = useState([]);
 
     useEffect(() => {
-        // Fetch contest details
+
         axios.get(`http://localhost:5000/natjecanje/${match.params.naziv}`).then((response) => {
-            setContest(response.data);
+            setNatjecanje(response.data);
         });
 
-        // Fetch contestants
+
         axios.get(`http://localhost:5000/natjecatelji/${match.params.naziv}`).then((response) => {
-            setContestants(response.data);
+            setNatjecatelji(response.data);
         });
 
-        // Fetch kola
+
         axios.get(`http://localhost:5000/kola/${match.params.naziv}`).then((response) => {
             setKola(response.data);
         });
@@ -38,9 +38,9 @@ function ContestDetail({match}) {
 
                     <div className="contestants-list">
                         <div>NATJECATELJI</div>
-                        {contestants.map((contestant, index) => (
-                            <div className="contestant-element" key={contestant.natjecatelj}>
-                                {index + 1}.  {contestant.natjecatelj}
+                        {natjecatelji.map((nat, index) => (
+                            <div className="contestant-element" key={nat.natjecatelj}>
+                                {index + 1}.  {nat.natjecatelj}
                             </div>
                         ))}
                     </div>
@@ -49,9 +49,9 @@ function ContestDetail({match}) {
 
                     <div className="contestants-list">
                         <div>BODOVI</div>
-                        {contestants.map((contestant) => (
-                            <div className="contestant-element" key={contestant.bodovi}>
-                                {contestant.bodovi}
+                        {natjecatelji.map((nat) => (
+                            <div className="contestant-element" key={nat.bodovi}>
+                                {nat.bodovi}
                             </div>
                         ))}
                     </div>
@@ -61,7 +61,7 @@ function ContestDetail({match}) {
             <div>
                     <h3>Raspored kola</h3>
 
-                    <div className="contestants-container">
+                    <div className="natejcatelji-container">
                         {kola.map((kolo, index) => (
                             <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                 <div className="flex-container-vertical">
@@ -74,7 +74,11 @@ function ContestDetail({match}) {
                                     </div>
                                     <div>
                                         {kolo.natjecatelj1_ishod === null ? (
-                                            <PutBodovi kolo_id={kolo.kolo_id}/>
+                                            <div className="flex-container-horizontal div-smaller color1">
+                                                <div>-</div>
+                                                <div> :</div>
+                                                <div>-</div>
+                                            </div>
                                         ) : (
                                             <div className="flex-container-horizontal div-smaller color1">
                                                 <div>{kolo.natjecatelj1_ishod}</div>
@@ -94,4 +98,4 @@ function ContestDetail({match}) {
     );
 }
 
-export default ContestDetail;
+export default IzabranoNatjecanje;

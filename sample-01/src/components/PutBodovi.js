@@ -16,7 +16,7 @@ function PutBodovi({ kolo_id }) {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Ensure the entered value is a number and greater than or equal to 0
+
         const numericValue = parseInt(value);
         if (!isNaN(numericValue) && numericValue >= 0) {
             setFormData({

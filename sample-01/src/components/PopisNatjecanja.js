@@ -3,8 +3,8 @@ import NavBar from './NavBar';
 
 function PopisNatjecanja() {
     const [data, setData] = useState([]);
-    const [contestants, setContestants] = useState([]);
-    const [selectedCompetition, setSelectedCompetition] = useState(null);
+    const [natjecatelji, setNatjecatelji] = useState([]);
+    const [izabranoNatjecanje, setIzabranoNatjecanje] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [successMessage, setSuccessMessage] = useState(null);
 
@@ -15,23 +15,23 @@ function PopisNatjecanja() {
                 console.log(data);
                 setData(data);
             })
-            .catch((error) => console.error('Error fetching data:', error));
+            .catch((error) => console.error('Error fetching natjecanja data:', error));
     }, []);
 
-    const fetchContestants = (naziv) => {
+    const fetchNatjecatelji = (naziv) => {
         fetch(`http://localhost:5000/natjecatelji/${naziv}`)
             .then((response) => response.json())
-            .then((contestantsData) => setContestants(contestantsData))
-            .catch((error) => console.error('Error fetching contestants data:', error));
+            .then((contestantsData) => setNatjecatelji(contestantsData))
+            .catch((error) => console.error('Error fetching natjecatelji data:', error));
     };
 
     const handleShowContestants = (naziv) => {
-        setSelectedCompetition(naziv);
-        fetchContestants(naziv);
+        setIzabranoNatjecanje(naziv);
+        fetchNatjecatelji(naziv);
     };
 
-    const filteredData = data.filter((competition) =>
-        competition.naziv.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredData = data.filter((natj) =>
+        natj.naziv.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -42,15 +42,15 @@ function PopisNatjecanja() {
 
                     <input
                         type="text"
-                        placeholder="Search competitions..."
+                        placeholder="Pretraži natjecanja..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                     <ul className="competition-list scrollable-container">
-                        {filteredData.map((competition) => (
-                            <li key={competition.naziv}>
-                                <button className="button-list"  onClick={() => handleShowContestants(competition.naziv)}>
-                                    {competition.naziv}
+                        {filteredData.map((natj) => (
+                            <li key={natj.naziv}>
+                                <button className="button-list"  onClick={() => handleShowContestants(natj.naziv)}>
+                                    {natj.naziv}
                                 </button>
                             </li>
                         ))}
@@ -65,14 +65,14 @@ function PopisNatjecanja() {
             <div className="flex-container-horizontal">
 
                 <div >
-                {selectedCompetition && (
+                {izabranoNatjecanje && (
                     <div className="contestants-container">
 
                         <div className="contestants-list">
                             <div>NATJECATELJI</div>
-                            {contestants.map((contestant, index) => (
-                                <div className="contestant-element" key={contestant.natjecatelj}>
-                                    {index + 1}. {contestant.natjecatelj}
+                            {natjecatelji.map((n, index) => (
+                                <div className="contestant-element" key={n.natjecatelj}>
+                                    {index + 1}. {n.natjecatelj}
                                 </div>
                             ))}
                         </div>
@@ -80,14 +80,14 @@ function PopisNatjecanja() {
                 )}
             </div>
                 <div>
-                {selectedCompetition && (
+                {izabranoNatjecanje && (
                     <div className="contestants-container">
 
                         <div className="contestants-list">
                             <div>BODOVI</div>
-                            {contestants.map((contestant) => (
-                                <div className="contestant-element" key={contestant.natjecatelj + contestant.bodovi}>
-                                    {contestant.bodovi}
+                            {natjecatelji.map((n) => (
+                                <div className="contestant-element" key={n.natjecatelj + n.bodovi}>
+                                    {n.bodovi}
                                 </div>
                             ))}
                         </div>

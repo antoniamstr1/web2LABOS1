@@ -108,26 +108,8 @@ const NavBar = () => {
                       navbar
                       style={{ minHeight: 170 }}
                   >
-                    <NavItem>
-                  <span className="user-info">
-                    <img
-                        src={user.picture}
-                        alt="Profile"
-                        className="nav-user-profile d-inline-block rounded-circle mr-3"
-                        width="50"
-                    />
-                    <h6 className="d-inline-block">{user.name}</h6>
-                  </span>
-                    </NavItem>
-                    <NavItem>
-                      <FontAwesomeIcon icon="user" className="mr-3" />
-                      <RouterNavLink
-                          to="/profile"
-                          activeClassName="router-link-exact-active"
-                      >
-                        Profile
-                      </RouterNavLink>
-                    </NavItem>
+
+
                     <NavItem>
                       <FontAwesomeIcon icon="power-off" className="mr-3" />
                       <RouterNavLink

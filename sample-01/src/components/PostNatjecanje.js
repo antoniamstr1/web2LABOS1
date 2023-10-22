@@ -36,7 +36,7 @@ function PostNatjecanja() {
             return;
         }
 
-        // Check if any field is empty
+
         if (
             formData.naziv.trim() === '' ||
             formData.bodovi_pobjeda.trim() === '' ||
@@ -45,7 +45,7 @@ function PostNatjecanja() {
             formData.popis_natjecatelja.trim() === ''
         ) {
             setErrorMessage('Sva polja moraju biti popunjena');
-            return; // Stop form submission if any field is empty
+            return;
         }
 
         if (
@@ -54,7 +54,7 @@ function PostNatjecanja() {
             (!formData.popis_natjecatelja.includes('\n')))
         ) {
             setErrorMessage('Natjecatelji moraju biti odvojeni , ili \n');
-            return; // Stop form submission if any field is empty
+            return;
         }
         //split da vidim jel ima 4 do 8
         var lista_natjecatelja = []
@@ -78,16 +78,16 @@ function PostNatjecanja() {
 
         if (hasDuplicates(lista_natjecatelja_trim)){
             setErrorMessage('Natjecatelji ne smiju imati ista imena.');
-            return; // Stop form submission if any field is empty
+            return;
         }
 
 
 
-        // Send data to the backend
+
         axios
             .post(`http://localhost:5000/kreirajnatjecanje/${user.sub}`, formData)
             .then((response) => {
-                // Handle the response from the server and set the success message.
+
                 if (response.data && response.data.message) {
                     console.log('uspjesno spremljeno natjecanje');
                     const competitionURL = `http://localhost:3000/natjecanje/${response.data.naziv}`;
@@ -111,9 +111,9 @@ function PostNatjecanja() {
 
     return (
         <div>
-            {isAuthenticated ? ( // Render form only if user is authenticated
+            {isAuthenticated ? (
                 <div>
-                    <h2>Create a Competition</h2>
+                    <h2>Kreiraj natjecanje</h2>
                     <form onSubmit={handleSubmit}>
 
 
@@ -176,7 +176,7 @@ function PostNatjecanja() {
                 </div>
             ) : (
                 <div>
-                    <p>You need to be logged in to create a competition.</p>
+                    <p>Potrebna je prijava za kreiranje natjecanja.</p>
 
                 </div>
             )}
