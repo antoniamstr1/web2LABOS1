@@ -17,7 +17,7 @@ function PopisNatjecanja() {
             console.log('This is a page refresh');
         }
 
-        fetch(`http://localhost:5000/natjecanjaByKorisnik/${user?.sub}`)
+        fetch(`https://web2lab1natjecanja.onrender.com/natjecanjaByKorisnik/${user?.sub}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -33,7 +33,7 @@ function PopisNatjecanja() {
 
 
     const fetchKola = (naziv) => {
-        fetch(`http://localhost:5000/kola/${naziv}`)
+        fetch(`https://web2lab1natjecanja.onrender.com/kola/${naziv}`)
             .then((response) => response.json())
             .then((kolaData) => setKola(kolaData))
             .catch((error) => console.error('Error fetching kola data:', error));

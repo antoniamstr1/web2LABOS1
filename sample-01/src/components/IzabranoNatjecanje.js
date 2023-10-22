@@ -9,17 +9,17 @@ function IzabranoNatjecanje({match}) {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/natjecanje/${match.params.naziv}`).then((response) => {
+        axios.get(`https://web2lab1natjecanja.onrender.com/natjecanje/${match.params.naziv}`).then((response) => {
             setNatjecanje(response.data);
         });
 
 
-        axios.get(`http://localhost:5000/natjecatelji/${match.params.naziv}`).then((response) => {
+        axios.get(`https://web2lab1natjecanja.onrender.com/natjecatelji/${match.params.naziv}`).then((response) => {
             setNatjecatelji(response.data);
         });
 
 
-        axios.get(`http://localhost:5000/kola/${match.params.naziv}`).then((response) => {
+        axios.get(`https://web2lab1natjecanja.onrender.com/kola/${match.params.naziv}`).then((response) => {
             setKola(response.data);
         });
     }, [match.params.naziv]);

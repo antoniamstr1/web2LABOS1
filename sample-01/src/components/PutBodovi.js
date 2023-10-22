@@ -30,7 +30,7 @@ function PutBodovi({ kolo_id }) {
         e.preventDefault();
 
         axios
-            .put(`http://localhost:5000/bodovi/${kolo_id}`, formData)
+            .put(`https://web2lab1natjecanja.onrender.com/bodovi/${kolo_id}`, formData)
             .then((response) => {
                 console.log('uspjesno spremljeno kolo');
                 console.log('response.data.success:',response.data);

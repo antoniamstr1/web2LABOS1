@@ -9,7 +9,7 @@ function PopisNatjecanja() {
     const [successMessage, setSuccessMessage] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/natjecanja')
+        fetch('https://web2lab1natjecanja.onrender.com/natjecanja')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -19,7 +19,7 @@ function PopisNatjecanja() {
     }, []);
 
     const fetchNatjecatelji = (naziv) => {
-        fetch(`http://localhost:5000/natjecatelji/${naziv}`)
+        fetch(`https://web2lab1natjecanja.onrender.com/natjecatelji/${naziv}`)
             .then((response) => response.json())
             .then((contestantsData) => setNatjecatelji(contestantsData))
             .catch((error) => console.error('Error fetching natjecatelji data:', error));

@@ -85,12 +85,12 @@ function PostNatjecanja() {
 
 
         axios
-            .post(`http://localhost:5000/kreirajnatjecanje/${user.sub}`, formData)
+            .post(`https://web2lab1natjecanja.onrender.com/kreirajnatjecanje/${user.sub}`, formData)
             .then((response) => {
 
                 if (response.data && response.data.message) {
                     console.log('uspjesno spremljeno natjecanje');
-                    const competitionURL = `http://localhost:3000/natjecanje/${response.data.naziv}`;
+                    const competitionURL = `https://web2-lab1-8sa6.onrender.com/natjecanje/${response.data.naziv}`;
                     setSuccessMessage(
                         <div>
                             Natjecanje podijeli sa drugima: <a href={competitionURL}>{competitionURL}</a>.
