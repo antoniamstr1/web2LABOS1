@@ -28,9 +28,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(auth(config));
+
+
+
+
+
 app.use('/', indexRouter);
 
-const PORT = process.env.PORT || 3030;
-app.listen(PORT, () => {
-    console.log(`server started on port ${PORT}`);
+app.listen(5000,()=> {
+    console.log('Server is running on port 5000')
 });
