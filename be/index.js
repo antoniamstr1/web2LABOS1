@@ -7,8 +7,7 @@ const db = require('./queries.js');
 const {requiresAuth} = require('express-openid-connect');
 const cors = require('cors');
 router.use(cors());
-router.get('/' +
-    '',db.getAllNatjecanje);
+router.get('/natjecanja',db.getAllNatjecanje);
 router.get('/natjecanje/:naziv',db.getNatjecanje);
 router.get('/natjecanjaByKorisnik/:sub', db.getNatjecanjaByKorisnik);
 router.get('/natjecatelji/:naziv', db.getNatjecatelji);
