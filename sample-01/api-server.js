@@ -9,7 +9,7 @@ const app = express();
 
 const port = process.env.API_PORT || 3001;
 const appPort = process.env.SERVER_PORT || 3000;
-const appOrigin = authConfig.appOrigin || `http://localhost:${appPort}` || 'https://web2-lab1-8sa6.onrender.com/';
+const appOrigin = 'https://web2-lab1-8sa6.onrender.com';
 
 if (
   !authConfig.domain ||
