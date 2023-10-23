@@ -93,7 +93,7 @@ function PostNatjecanja() {
                     const competitionURL = `https://web2-lab1-icgy.onrender.com/natjecanje/${response.data.naziv}`;
                     setSuccessMessage(
                         <div>
-                            Natjecanje podijeli sa drugima: <a href={competitionURL}>{competitionURL}</a>.
+                            Natjecanje podijeli sa drugima: <a href={competitionURL} target="_blank">{competitionURL}</a>.
                         </div>
                     );
                 }
