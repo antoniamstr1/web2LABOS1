@@ -32,7 +32,7 @@ function PostNatjecanja() {
         e.preventDefault();
         resetMessages();
         if (!isAuthenticated) {
-            setErrorMessage('You need to log in to create a competition.');
+            setErrorMessage('Poterbna je prijava.');
             return;
         }
 
@@ -90,7 +90,7 @@ function PostNatjecanja() {
 
                 if (response.data && response.data.message) {
                     console.log('uspjesno spremljeno natjecanje');
-                    const competitionURL = `https://web2-lab1-8sa6.onrender.com/natjecanje/${response.data.naziv}`;
+                    const competitionURL = `https://web2-lab1-icgy.onrender.com/natjecanje/${response.data.naziv}`;
                     setSuccessMessage(
                         <div>
                             Natjecanje podijeli sa drugima: <a href={competitionURL}>{competitionURL}</a>.
