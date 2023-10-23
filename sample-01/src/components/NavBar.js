@@ -17,7 +17,7 @@ const NavBar = () => {
 
   const logoutWithRedirect = () =>
       logout({
-        returnTo: window.location.origin,
+        returnTo: 'https://web2-lab1-icgy.onrender.com',
       });
 
   return (
