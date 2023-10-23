@@ -5,7 +5,7 @@ const cors = require('cors');
 require('dotenv').config()
 
 const corsOptions = {
-    origin: 'https://web2-lab1-8sa6.onrender.com',
+    origin: 'https://web2-lab1-icgy.onrender.com',
     // Add any other CORS options as needed
 };
 
