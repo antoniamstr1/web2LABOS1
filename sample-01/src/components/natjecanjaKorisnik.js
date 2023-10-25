@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useAuth0} from '@auth0/auth0-react';
 import PutBodovi from './PutBodovi';
 function PopisNatjecanja() {
-    const {user, isAuthenticated, loginWithRedirect} = useAuth0();
+    const {user, isAuthenticated} = useAuth0();
     const [data, setData] = useState([]);
     const [kola, setKola] = useState([]);
     const [izabranoNatjecanje, setIzabranoNatjecanje] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [ setLoading] = useState(true);
 
     useEffect(() => {
         if (localStorage.getItem('firstLoadDone') === null) {
@@ -108,7 +108,7 @@ function PopisNatjecanja() {
                 </div>
             ) : (
                 <div>
-                    <p>You need to be logged in to view competitions.</p>
+                    <p>Potrebna je prijava za kreiranje natjecanja..</p>
                 </div>
             )}
         </>

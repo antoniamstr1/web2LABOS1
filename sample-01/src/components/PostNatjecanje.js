@@ -12,7 +12,7 @@ function PostNatjecanja() {
         popis_natjecatelja: '',
     });
 
-    const { user,isAuthenticated, loginWithRedirect } = useAuth0();
+    const { user,isAuthenticated } = useAuth0();
     const [errorMessage, setErrorMessage] = useState(null); // State to hold the error message
     const [successMessage, setSuccessMessage] = useState(null); // State to hold the success message
 
@@ -90,7 +90,7 @@ function PostNatjecanja() {
 
                 if (response.data && response.data.message) {
                     console.log('uspjesno spremljeno natjecanje');
-                    const competitionURL = `https://web2-lab1-icgy.onrender.com/natjecanje/${response.data.naziv}`;
+                    const competitionURL = `https://web2-lab1-icgy.onrender.com/#/natjecanje/${response.data.naziv}`;
                     setSuccessMessage(
                         <div>
                             Natjecanje podijeli sa drugima: <a href={competitionURL} target="_blank">{competitionURL}</a>.
