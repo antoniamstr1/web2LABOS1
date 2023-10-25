@@ -1,7 +1,7 @@
 /**
  * TU SE NALAZE SVI UPITI IZ BAZE
  */
-const { DB_USER, DB_HOST, DB_PASSWORD } = process.env;
+//const { DB_USER, DB_HOST, DB_PASSWORD } = process.env;
 require('dotenv').config();
 const Pool = require('pg').Pool;
 const pool = new Pool({
@@ -97,7 +97,7 @@ const getKolo = (req,res) => {
 const getKolaByNatjecanje = (req,res) => {
 
     const natj = req.params.natj;
-    pool.query('select * from kolo where natjecanje = $1 ',[natj], (error,results) => {
+    pool.query('select * from kolo where natjecanje = $1 order by kolo_id desc ',[natj], (error,results) => {
         if(error) {
             throw error
         }
