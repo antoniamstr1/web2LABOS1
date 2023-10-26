@@ -177,14 +177,30 @@ const createNatjecanje = (req, res) => {
 
                 await insertContestants();
 
+                //2. verzija u kojoj imamo u jednom kolu više utakmica
+                //na frontendu napraviti da preko broja utakmica prepozna koliko ima kola
+                let n = lista_natjecatelja.length;
+                let lista_kirkman = kirkman(n);
+                console.log(kolo_list)
+                for (let i = 0; i < kolo_list.length; i++) {
+                    for (let j = 0; j < kolo_list[i].length; j++) {
+                        //dolazim do manjih lista [x,y]
+                        const index_natj1 = kolo_list[i][j][0];
+                        const index_natj2 = kolo_list[i][j][1];
+                        const trimmedName1 = lista_natjecatelja[index_natj1-1].trim();
+                        const trimmedName2 = lista_natjecatelja[index_natj2-1].trim();
+                        console.log(trimmedName1, trimmedName2);
+                    }
 
-                for (let i = 0; i < lista_natjecatelja.length; i++) {
+                }
+                // 1. verzija u kojoj je u jednom kolu bilo samo jedna utakmica
+                /*for (let i = 0; i < lista_natjecatelja.length; i++) {
                     for (let j = i + 1; j < lista_natjecatelja.length; j++) {
                         const trimmedName1 = lista_natjecatelja[i].trim();
                         const trimmedName2 = lista_natjecatelja[j].trim();
                         await insertKoloPair(trimmedName1, trimmedName2, natjecanje_id, naziv);
                     }
-                }
+                }*/
                 await insertBodoviData(lista_natjecatelja, naziv);
 
                 res.status(201).json({ message: 'Competition and contestants added successfully', naziv: naziv });
