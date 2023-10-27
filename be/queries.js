@@ -242,11 +242,12 @@ const createNatjecanje = (req, res) => {
                 let list_kirkman = kirkman(n);
                 console.log('n:', n);
                 console.log('list_kirkman:', list_kirkman);
-                for (let i = 0; i < list_kirkman.length; i++) {
-                    for (let j = 0; j < list_kirkman[i].length; j++) {
+                const list_kirkman_cl = list_kirkman.map(arr => arr.filter(item => item !== "<1 empty item>"));
+                for (let i = 0; i < list_kirkman_cl.length; i++) {
+                    for (let j = 0; j < list_kirkman_cl[i].length; j++) {
                         //dolazim do manjih lista [x,y]
-                        const index_natj1 = list_kirkman[i][j][0];
-                        const index_natj2 = list_kirkman[i][j][1];
+                        const index_natj1 = list_kirkman_cl[i][j][0];
+                        const index_natj2 = list_kirkman_cl[i][j][1];
                         const trimmedName1 = lista_natjecatelja[index_natj1-1].trim();
                         const trimmedName2 = lista_natjecatelja[index_natj2-1].trim();
                         console.log('kolo:',trimmedName1,trimmedName2 );
