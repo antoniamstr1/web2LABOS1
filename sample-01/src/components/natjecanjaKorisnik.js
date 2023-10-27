@@ -57,6 +57,7 @@ function PopisNatjecanja() {
         console.log('natjecatelji n: ', natjecatelji_n)
         return natjecatelji_n;
     }
+    let index2 = 0;
 
     return (
         <>
@@ -86,7 +87,7 @@ function PopisNatjecanja() {
                         <h1>Raspored kola</h1>
                         {izabranoNatjecanje && (
                             <div className="contestants-container">
-                                {kola.map((kolo, index, index2) => (
+                                {kola.map((kolo, index, index2 ) => (
                                     <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                         <div className="flex-container-vertical">
 
