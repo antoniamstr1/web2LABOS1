@@ -53,7 +53,7 @@ function PostNatjecanja() {
             ((!formData.popis_natjecatelja.includes(',')) &&
             (!formData.popis_natjecatelja.includes('\n')))
         ) {
-            setErrorMessage('Natjecatelji moraju biti odvojeni , ili \n');
+            setErrorMessage('Natjecatelji moraju biti odvojeni ; ili \n');
             return;
         }
         //split da vidim jel ima 4 do 8
