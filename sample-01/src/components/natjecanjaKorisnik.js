@@ -51,6 +51,7 @@ function PopisNatjecanja() {
     );
 
     const kola_length = kola.length;
+    console.log('kola_length:', kola_length);
     const natjecatelji_n  = (-Math.sqrt(-4*kola_length)) / (2);
     console.log('natjecatelji n: ', natjecatelji_n)
 
