@@ -50,10 +50,13 @@ function PopisNatjecanja() {
         natj.naziv.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const kola_length = kola.length;
-    console.log('kola_length:', kola_length);
-    const natjecatelji_n  = (-Math.sqrt(-4*kola_length)) / (2);
-    console.log('natjecatelji n: ', natjecatelji_n)
+    function razmak(kola){
+        const kola_length = kola.length;
+        console.log('kola_length:', kola_length);
+        const natjecatelji_n  = (-Math.sqrt(-4*kola_length)) / (2);
+        console.log('natjecatelji n: ', natjecatelji_n)
+        return natjecatelji_n;
+    }
 
     return (
         <>
@@ -87,7 +90,7 @@ function PopisNatjecanja() {
                                     <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                         <div className="flex-container-vertical">
 
-                                            {index % Math.floor(kola.length / 2) === 0 && <div>{index + 1}. kolo:</div>}
+                                            {index % Math.floor(razmak(kola) / 2) === 0 && <div>{index + 1}. kolo:</div>}
 
                                             <div className="flex-container-horizontal div-smaller color1">
 
