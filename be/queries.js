@@ -1,3 +1,4 @@
+import kirkman from './kirkmann'
 /**
  * TU SE NALAZE SVI UPITI IZ BAZE
  */
@@ -180,13 +181,13 @@ const createNatjecanje = (req, res) => {
                 //2. verzija u kojoj imamo u jednom kolu više utakmica
                 //na frontendu napraviti da preko broja utakmica prepozna koliko ima kola
                 let n = lista_natjecatelja.length;
-                let lista_kirkman = kirkman(n);
-                console.log(kolo_list)
-                for (let i = 0; i < kolo_list.length; i++) {
-                    for (let j = 0; j < kolo_list[i].length; j++) {
+                let list_kirkman = kirkman(n);
+
+                for (let i = 0; i < list_kirkman.length; i++) {
+                    for (let j = 0; j < list_kirkman[i].length; j++) {
                         //dolazim do manjih lista [x,y]
-                        const index_natj1 = kolo_list[i][j][0];
-                        const index_natj2 = kolo_list[i][j][1];
+                        const index_natj1 = list_kirkman[i][j][0];
+                        const index_natj2 = list_kirkman[i][j][1];
                         const trimmedName1 = lista_natjecatelja[index_natj1-1].trim();
                         const trimmedName2 = lista_natjecatelja[index_natj2-1].trim();
                         await insertKoloPair(trimmedName1, trimmedName2, natjecanje_id, naziv);
