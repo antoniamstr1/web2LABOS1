@@ -53,7 +53,7 @@ function PopisNatjecanja() {
     function razmak(kola){
         const kola_length = kola.length;
         console.log('kola_length:', kola_length);
-        const natjecatelji_n  = (-Math.sqrt(-4*kola_length)) / (2);
+        const natjecatelji_n  = (-Math.sqrt(-4*parseInt(kola_length))) / (2);
         console.log('natjecatelji n: ', natjecatelji_n)
         return natjecatelji_n;
     }
