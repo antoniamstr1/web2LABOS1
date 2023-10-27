@@ -86,7 +86,7 @@ function PopisNatjecanja() {
                                     <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                         <div className="flex-container-vertical">
                                             <!--<div>{index + 1}. kolo:</div>-->
-                                            {index % Math.floor(kola.length / 2) === 0 && <div>{index + 1}. kolo:</div>}
+                                            <div>{index % Math.floor(kola.length / 2) === 0 && <div>{index + 1}. kolo:</div>}</div>
 
                                             <div className="flex-container-horizontal div-smaller color1">
 
