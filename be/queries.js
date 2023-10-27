@@ -189,7 +189,7 @@ const createNatjecanje = (req, res) => {
                         const index_natj2 = kolo_list[i][j][1];
                         const trimmedName1 = lista_natjecatelja[index_natj1-1].trim();
                         const trimmedName2 = lista_natjecatelja[index_natj2-1].trim();
-                        console.log(trimmedName1, trimmedName2);
+                        await insertKoloPair(trimmedName1, trimmedName2, natjecanje_id, naziv);
                     }
 
                 }
