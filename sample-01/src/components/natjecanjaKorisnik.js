@@ -86,11 +86,11 @@ function PopisNatjecanja() {
                         <h1>Raspored kola</h1>
                         {izabranoNatjecanje && (
                             <div className="contestants-container">
-                                {kola.map((kolo, index) => (
+                                {kola.map((kolo, index, index2) => (
                                     <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                         <div className="flex-container-vertical">
 
-                                            {index % Math.floor(br_nat(kola) / 2) === 0 && <div>{index + 1 -((br_nat(kola))/kola.length)}. kolo:</div>}
+                                            {index % Math.floor(br_nat(kola) / 2) === 0 && <div>{index2 + 1}. kolo:</div>}
 
                                             <div className="flex-container-horizontal div-smaller color1">
 
