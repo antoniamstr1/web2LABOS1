@@ -57,7 +57,7 @@ function PopisNatjecanja() {
         console.log('natjecatelji n: ', natjecatelji_n)
         return natjecatelji_n;
     }
-    let index2 = 0;
+    let index2 = 1;
 
     return (
         <>
