@@ -228,9 +228,10 @@ const createNatjecanje = (req, res) => {
 
                 if (popis_natjecatelja.includes('\n')) {
                     lista_natjecatelja = popis_natjecatelja.split("\n");
-                } else if (popis_natjecatelja.includes(',')) {
-                    lista_natjecatelja = popis_natjecatelja.split(",");
+                } else if (popis_natjecatelja.includes(';')) {
+                    lista_natjecatelja = popis_natjecatelja.split(";");
                 }
+
 
 
 
@@ -240,8 +241,7 @@ const createNatjecanje = (req, res) => {
                 //na frontendu napraviti da preko broja utakmica prepozna koliko ima kola
                 let n = lista_natjecatelja.length;
                 let list_kirkman = kirkman(n);
-                console.log('n:', n);
-                console.log('list_kirkman:', list_kirkman);
+
                 const list_kirkman_cl = list_kirkman.map(arr => arr.filter(item => item !== "<1 empty item>"));
                 for (let i = 0; i < list_kirkman_cl.length; i++) {
                     for (let j = 0; j < list_kirkman_cl[i].length; j++) {
@@ -250,7 +250,7 @@ const createNatjecanje = (req, res) => {
                         const index_natj2 = list_kirkman_cl[i][j][1];
                         const trimmedName1 = lista_natjecatelja[index_natj1-1].trim();
                         const trimmedName2 = lista_natjecatelja[index_natj2-1].trim();
-                        console.log('kolo:',trimmedName1,trimmedName2 );
+
                         await insertKoloPair(trimmedName1, trimmedName2, natjecanje_id, naziv);
                     }
 
