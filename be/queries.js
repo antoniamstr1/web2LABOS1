@@ -240,7 +240,8 @@ const createNatjecanje = (req, res) => {
                 //na frontendu napraviti da preko broja utakmica prepozna koliko ima kola
                 let n = lista_natjecatelja.length;
                 let list_kirkman = kirkman(n);
-
+                console.log('n:', n);
+                console.log('list_kirkman:', list_kirkman);
                 for (let i = 0; i < list_kirkman.length; i++) {
                     for (let j = 0; j < list_kirkman[i].length; j++) {
                         //dolazim do manjih lista [x,y]
@@ -248,6 +249,7 @@ const createNatjecanje = (req, res) => {
                         const index_natj2 = list_kirkman[i][j][1];
                         const trimmedName1 = lista_natjecatelja[index_natj1-1].trim();
                         const trimmedName2 = lista_natjecatelja[index_natj2-1].trim();
+                        console.log('kolo:',trimmedName1,trimmedName2 );
                         await insertKoloPair(trimmedName1, trimmedName2, natjecanje_id, naziv);
                     }
 
@@ -297,7 +299,7 @@ const insertBodoviDataForContestant = (ime, natjecanje) => {
     return new Promise((resolve, reject) => {
         pool.query(
             'INSERT INTO bodovi (natjecatelj, natjecanje, bodovi) VALUES ($1, $2, $3)',
-            [ime, natjecanje, 0], // You can initialize 'bodovi' with 0
+            [ime, natjecanje, 0],
             (error, results) => {
                 if (error) {
                     reject(error);
