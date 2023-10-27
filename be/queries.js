@@ -1,4 +1,4 @@
-import kirkman from './kirkmann'
+import kirkman from './kirkmann.js'
 /**
  * TU SE NALAZE SVI UPITI IZ BAZE
  */
