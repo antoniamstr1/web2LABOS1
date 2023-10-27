@@ -24,6 +24,15 @@ function IzabranoNatjecanje({match}) {
         });
     }, [match.params.naziv]);
 
+    function br_nat(kola){
+        const kola_length = kola.length;
+        console.log('kola_length:', kola_length);
+        const natjecatelji_n  = (1+Math.sqrt(1-4*-2*10)) / (2);
+        console.log('natjecatelji n: ', natjecatelji_n)
+        return natjecatelji_n;
+    }
+    let index2 = 1;
+
     return (
 
         <div>
@@ -65,7 +74,7 @@ function IzabranoNatjecanje({match}) {
                         {kola.map((kolo, index) => (
                             <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                 <div className="flex-container-vertical">
-                                    <div>{index + 1}. kolo:</div>
+                                    {index % Math.floor(br_nat(kola) / 2) === 0 && <div>{index2++}. kolo:</div>}
                                     <div className="flex-container-horizontal div-smaller color2">
 
                                         <div className="kolo-imena">{kolo.natjecatelj1}</div>
