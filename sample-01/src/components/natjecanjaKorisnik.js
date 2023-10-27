@@ -87,7 +87,7 @@ function PopisNatjecanja() {
                         <h1>Raspored kola</h1>
                         {izabranoNatjecanje && (
                             <div className="contestants-container">
-                                {kola.map((kolo, index, index2 ) => (
+                                {kola.map((kolo, index ) => (
                                     <div key={kolo.natjecatelj1 + kolo.natjecatelj2}>
                                         <div className="flex-container-vertical">
 
