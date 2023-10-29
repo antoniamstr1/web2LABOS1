@@ -50,10 +50,10 @@ function PostNatjecanja() {
 
         if (
             (formData.popis_natjecatelja.includes(',') && formData.popis_natjecatelja.includes(';')) ||
-            ((!formData.popis_natjecatelja.includes(',')) &&
+            ((!formData.popis_natjecatelja.includes(';')) &&
             (!formData.popis_natjecatelja.includes('\n')))
         ) {
-            setErrorMessage('Natjecatelji moraju biti odvojeni ; ili \n');
+            setErrorMessage('Natjecatelji moraju biti odvojeni isključivo ; ili isključivo novim redom');
             return;
         }
         //split da vidim jel ima 4 do 8
