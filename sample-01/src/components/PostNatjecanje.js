@@ -60,8 +60,8 @@ function PostNatjecanja() {
         var lista_natjecatelja = []
         if (formData.popis_natjecatelja.includes('\n')) {
             lista_natjecatelja = formData.popis_natjecatelja.split("\n");
-        } else if (formData.popis_natjecatelja.includes(',')) {
-            lista_natjecatelja = formData.popis_natjecatelja.split(",");
+        } else if (formData.popis_natjecatelja.includes(';')) {
+            lista_natjecatelja = formData.popis_natjecatelja.split(";");
         }
         if (lista_natjecatelja.length < 4){
             setErrorMessage('Minimalan broj natjecatelja je 4.');
